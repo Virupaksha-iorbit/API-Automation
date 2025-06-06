@@ -1,0 +1,117 @@
+{
+	"id": "ed188369-9998-4761-87ee-7e362dcf4831",
+	"values": [
+		{
+			"key": "mailinator_token",
+			"value": "205e727dc5f44330b49da4b1e9aafc4a",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "mailinator_domain",
+			"value": "team713034.testinator.com",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "Domain",
+			"value": "test-itouch.iorbit.health",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "Port",
+			"value": "8080",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "iorbit_emailer",
+			"value": "iorbitemailserver@gmail.com",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "mailinator Domain",
+			"value": "team713034.testinator.com",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "validateUsername",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "orgCode",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "doctorCode",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "Xioami Gateway",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "deviceCode",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "orgName",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "email",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "hospitalCode",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "deviceType",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "bedCode",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "gatewayCode",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "patientCode",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		}
+	],
+	"name": "Globals",
+	"_postman_variable_scope": "globals",
+	"_postman_exported_at": "2025-06-06T19:01:31.908Z",
+	"_postman_exported_using": "Postman/11.48.5"
+}
