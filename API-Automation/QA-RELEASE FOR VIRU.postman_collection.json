@@ -1,157 +1,15 @@
 {
 	"info": {
 		"_postman_id": "8cc05ecc-4f97-4fa8-bf3f-8a31823e5b19",
-		"name": "QA-Release-1",
+		"name": "QA-RELEASE FOR VIRU",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "43037363",
-		"_collection_link": "https://testing-team-iorbit-main.postman.co/workspace/3eb20f0e-19a5-404a-8398-abc9ade638d4/collection/43037363-8cc05ecc-4f97-4fa8-bf3f-8a31823e5b19?action=share&source=collection_link&creator=43037363"
+		"_collection_link": "https://testing-team-iorbit-main.postman.co/workspace/Testing-Team-(-iOrbit-Main-)~3eb20f0e-19a5-404a-8398-abc9ade638d4/collection/43037363-8cc05ecc-4f97-4fa8-bf3f-8a31823e5b19?action=share&source=collection_link&creator=43037363"
 	},
 	"item": [
 		{
 			"name": "Organization",
 			"item": [
-				{
-					"name": "Malinator",
-					"item": [
-						{
-							"name": "1-Cred & ver OTP message id-Mailinator Copy 3",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"let responseData = pm.response.json();\r",
-											"let data = responseData?.msgs; \r",
-											"\r",
-											"let sr_no = pm.collectionVariables.get(\"sr_no\"); // Get the environment variable\r",
-											"let to_email = `fortis${sr_no}`; // Correct way to concatenate // Update as required\r",
-											"console.log(to_email);\r",
-											"\r",
-											"// Ensure 'data' is an array before proceeding\r",
-											"if (data && Array.isArray(data)) {\r",
-											"    console.log(\"Searching emails for:\", to_email);\r",
-											"\r",
-											"    let otpmsg = data\r",
-											"        .filter(m => m.to === to_email && m.subject === \"Verification Email\")\r",
-											"        .sort((a, b) => a.seconds_ago - b.seconds_ago)[0];\r",
-											"\r",
-											"    let unpwdmsg = data.find(m => m.to === to_email && m.subject === \"Account Successfully Created\");\r",
-											"\r",
-											"    if (otpmsg) {\r",
-											"        pm.collectionVariables.set(\"otp_message_id\", otpmsg.id);\r",
-											"        console.log(\"OTP Message ID:\", otpmsg.id);\r",
-											"    } else {\r",
-											"        console.log(\"No OTP message found.\");\r",
-											"    }\r",
-											"\r",
-											"    if (unpwdmsg) {\r",
-											"        pm.collectionVariables.set(\"unpwd_message_id\", unpwdmsg.id);\r",
-											"        console.log(\"Account Creation Message ID:\", unpwdmsg.id);\r",
-											"    } else {\r",
-											"        console.log(\"No Account Creation message found.\");\r",
-											"    }\r",
-											"} else {\r",
-											"    console.log(\"Invalid response format: 'msgs' is not an array.\");\r",
-											"}\r",
-											""
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								},
-								{
-									"listen": "prerequest",
-									"script": {
-										"exec": [
-											"setTimeout(() => console.log(\"Paused for 5 seconds\"), 5000);"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "https://mailinator.com/api/v2/domains/private/inboxes/*?token={{mailinator_token}}",
-									"protocol": "https",
-									"host": [
-										"mailinator",
-										"com"
-									],
-									"path": [
-										"api",
-										"v2",
-										"domains",
-										"private",
-										"inboxes",
-										"*"
-									],
-									"query": [
-										{
-											"key": "token",
-											"value": "{{mailinator_token}}"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "1.1- UN and PWD id-Mailinator Copy 4",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"let body = pm.response.json().parts[0].body;\r",
-											"\r",
-											"let username = body.match(/Username:\\s(.+)\\r\\n/)[1];\r",
-											"let password = body.match(/Password:\\s(.+)\\r\\n/)[1];\r",
-											"pm.collectionVariables.set(\"qaorg_username\", username);\r",
-											"pm.collectionVariables.set(\"qaorg_password\", password);\r",
-											"console.log(\"Username:\", username, \"Password:\", password);"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								},
-								{
-									"listen": "prerequest",
-									"script": {
-										"exec": [
-											"setTimeout(() => console.log(\"Paused for 5 seconds\"), 5000);"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "https://mailinator.com/api/v2/domains/{{mailinator_domain}}/messages/{{unpwd_message_id}}",
-									"protocol": "https",
-									"host": [
-										"mailinator",
-										"com"
-									],
-									"path": [
-										"api",
-										"v2",
-										"domains",
-										"{{mailinator_domain}}",
-										"messages",
-										"{{unpwd_message_id}}"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
 				{
 					"name": "login-raji",
 					"event": [
@@ -299,8 +157,8 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"pm.globals.set(\"orgName\", \"QA_Org7\");",
-									"pm.globals.set(\"email\", \"QA_Org7@mailinator.com\");",
+									"let current = parseInt(pm.environment.get(\"sr_no\") || \"0\");",
+									"pm.environment.set(\"sr_no\", current + 1);",
 									"",
 									""
 								],
@@ -345,7 +203,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"orgName\": \"APOLLO_ORG1\", \n  \"businessName\":\"A group of APOLLO_ORG1 hospitals\",\n  \"orgType\":\"COMPANY\",\n  \"myAddress\": {\n      \"street1\": \"APOLLO_ORG1 street\",\n      \"city\": \"Bangalore\",\n      \"pincode\": \"560076\",\n      \"state\": \"Karnataka\",\n      \"country\": \"India\"\n  },\n  \"myContact\": {\n      \"name\": \"APOLLO_ORG5\",\n      \"phone\": \"9988776655\",\n      \"email\": \"QA_Org8@mailinator.com\"\n  }\n}",
+							"raw": "{\n  \"orgName\": \"{{orgName}}{{sr_no}}\", \n  \"businessName\":\"A group of APOLLO_ORG1 hospitals\",\n  \"orgType\":\"COMPANY\",\n  \"myAddress\": {\n      \"street1\": \"APOLLO_ORG1 street\",\n      \"city\": \"Bangalore\",\n      \"pincode\": \"560076\",\n      \"state\": \"Karnataka\",\n      \"country\": \"India\"\n  },\n  \"myContact\": {\n      \"name\": \"APOLLO_ORG5\",\n      \"phone\": \"9988776655\",\n      \"email\": \"qa_viru{{sr_no}}@{{mailinator_domain}}\"\n  }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -457,13 +315,82 @@
 					]
 				},
 				{
-					"name": "verification-ORG1",
+					"name": "1-Cred & ver OTP message id-Mailinator Copy 3",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"setTimeout(() => console.log(\"Paused for 10 seconds\"), 5000);",
+									"",
+									"",
+									"let email = pm.collectionVariables.get(\"org_email\"); // e.g., QA_viru7@mailinator.com",
+									"if (email) {",
+									"    let inbox = email.split(\"@\")[0];  // Extract 'QA_viru7'",
+									"    pm.variables.set(\"mailinator_inbox\", inbox);  // Used only in this request",
+									"    console.log(\"Inbox set to:\", inbox);",
+									"} else {",
+									"    console.log(\"org_email not set\");",
+									"}",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let responseData = pm.response.json();\r",
+									"let data = responseData?.msgs || [];\r",
+									"\r",
+									"let full_email = pm.collectionVariables.get(\"org_email\") || \"\";\r",
+									"let inbox = full_email.split(\"@\")[0];  // Extract `qa_viru12` from full email\r",
+									"console.log(\"Extracted inbox:\", inbox);\r",
+									"\r",
+									"if (Array.isArray(data)) {\r",
+									"    let otpmsg = data\r",
+									"        .filter(m => m.to?.toLowerCase().trim() === inbox.toLowerCase().trim()\r",
+									"               && m.subject.toLowerCase().includes(\"verification\"))\r",
+									"        .sort((a, b) => a.seconds_ago - b.seconds_ago)[0];\r",
+									"\r",
+									"    let unpwdmsg = data.find(m =>\r",
+									"        m.to?.toLowerCase().trim() === inbox.toLowerCase().trim()\r",
+									"        && m.subject.toLowerCase().includes(\"account successfully created\"));\r",
+									"\r",
+									"    if (otpmsg) {\r",
+									"        pm.collectionVariables.set(\"otp_message_id\", otpmsg.id);\r",
+									"        console.log(\"OTP Message ID set:\", otpmsg.id);\r",
+									"    } else {\r",
+									"        console.log(\"No OTP message found.\");\r",
+									"    }\r",
+									"\r",
+									"    if (unpwdmsg) {\r",
+									"        pm.collectionVariables.set(\"unpwd_message_id\", unpwdmsg.id);\r",
+									"        console.log(\"Account Creation Message ID set:\", unpwdmsg.id);\r",
+									"    } else {\r",
+									"        console.log(\"No Account Creation message found.\");\r",
+									"    }\r",
+									"} else {\r",
+									"    console.log(\" 'msgs' is not an array.\");\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"otpCode\":\"292975\"\n}\n",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -471,29 +398,118 @@
 							}
 						},
 						"url": {
-							"raw": "{{testurl}}:8080/api/QA_Org7/user/QA_Org7@mailinator.com/verification",
+							"raw": "https://mailinator.com/api/v2/domains/private/inboxes/*?token={{mailinator}}",
+							"protocol": "https",
+							"host": [
+								"mailinator",
+								"com"
+							],
+							"path": [
+								"api",
+								"v2",
+								"domains",
+								"private",
+								"inboxes",
+								"*"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{mailinator}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1.1- UN and PWD id-Mailinator Copy 5",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let body = pm.response.json().parts[0].body;\r",
+									"\r",
+									"let username = body.match(/Username:\\s(.+)\\r\\n/)[1];\r",
+									"let password = body.match(/Password:\\s(.+)\\r\\n/)[1];\r",
+									"pm.collectionVariables.set(\"qaorg_username\", username);\r",
+									"pm.collectionVariables.set(\"qaorg_password\", password);\r",
+									"console.log(\"Username:\", username, \"Password:\", password);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"setTimeout(() => console.log(\"Paused for 5 seconds\"), 5000);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://mailinator.com/api/v2/domains/{{mailinator_domain}}/messages/{{unpwd_message_id}}",
+							"protocol": "https",
+							"host": [
+								"mailinator",
+								"com"
+							],
+							"path": [
+								"api",
+								"v2",
+								"domains",
+								"{{mailinator_domain}}",
+								"messages",
+								"{{unpwd_message_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login-org-ORG1 Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userName\":\"QA_Org7@mailinator.com\",\n    \"password\":\"a5a03a2f-9702-47e5-b765-56a048a6cc3e\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{testurl}}:8080/api/user/login",
 							"host": [
 								"{{testurl}}"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"QA_Org7",
 								"user",
-								"QA_Org7@mailinator.com",
-								"verification"
+								"login"
 							]
 						}
 					},
 					"response": [
 						{
-							"name": "verification-ORG1",
+							"name": "login-org-ORG1",
 							"originalRequest": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"otpCode\":\"155540\"\n}\n",
+									"raw": "{\n    \"userName\":\"APOLLO_ORG1@mailinator.com\",\n    \"password\":\"454b5c1a-dd23-45be-b47b-6d852b3b77d5\"\n}\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -501,7 +517,7 @@
 									}
 								},
 								"url": {
-									"raw": "https://localhost:8080/api/APOLLO_ORG1/user/APOLLO_ORG1@mailinator.com/verification",
+									"raw": "https://localhost:8080/api/user/login",
 									"protocol": "https",
 									"host": [
 										"localhost"
@@ -509,16 +525,14 @@
 									"port": "8080",
 									"path": [
 										"api",
-										"APOLLO_ORG1",
 										"user",
-										"APOLLO_ORG1@mailinator.com",
-										"verification"
+										"login"
 									]
 								}
 							},
 							"status": "OK",
 							"code": 200,
-							"_postman_previewlanguage": "plain",
+							"_postman_previewlanguage": "json",
 							"header": [
 								{
 									"key": "Vary",
@@ -533,12 +547,16 @@
 									"value": "Access-Control-Request-Headers"
 								},
 								{
+									"key": "Set-Cookie",
+									"value": "X-Auth=eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBUE9MTE9fT1JHMUBtYWlsaW5hdG9yLmNvbSIsImlzcyI6ImlPcmJpdCIsImV4cCI6MTczNzQ0ODQzMywiaWF0IjoxNzM3NDQ0ODMzLCJhZG1pbiI6InRydWUifQ.q-WP1xnuQRhW7_FQygJ5f9ezdp1hLiMQlmSU7TXIk7IlsMr27cHLfgQspA-r976x1RiKk6YJUcQOC39Lkn4Ksg; Path=/; Max-Age=3600; Expires=Tue, 21 Jan 2025 08:33:53 GMT; Secure; HttpOnly; SameSite=None"
+								},
+								{
 									"key": "Content-Type",
-									"value": "text/plain;charset=UTF-8"
+									"value": "application/json"
 								},
 								{
 									"key": "Content-Length",
-									"value": "28"
+									"value": "123"
 								},
 								{
 									"key": "Cache-Control",
@@ -571,14 +589,102 @@
 								{
 									"key": "Referrer-Policy",
 									"value": "no-referrer"
-								},
-								{
-									"key": "set-cookie",
-									"value": "X-Auth=; Max-Age=0; Expires=Tue, 21 Jan 2025 07:34:02 GMT; Path=/; Secure; HTTPOnly; SameSite=None"
 								}
 							],
 							"cookie": [],
-							"body": "Email verified successfully."
+							"body": "{\n    \"orgName\": \"APOLLO_ORG1\",\n    \"userName\": \"APOLLO_ORG1@mailinator.com\",\n    \"code\": \"111\",\n    \"message\": \"please verify your email address\"\n}"
+						},
+						{
+							"name": "login-org-ORG1",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userName\":\"APOLLO_ORG1@mailinator.com\",\n    \"password\":\"454b5c1a-dd23-45be-b47b-6d852b3b77d5\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:8080/api/user/login",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"user",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "X-Auth=eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBUE9MTE9fT1JHMUBtYWlsaW5hdG9yLmNvbSIsImlzcyI6ImlPcmJpdCIsImV4cCI6MTczNzQ0ODcyMSwiaWF0IjoxNzM3NDQ1MTIxLCJhZG1pbiI6InRydWUifQ.-L5uHxsDC4G7l9DW_EhWAKlEemf6Qp2GR2PunmALGb_DVcvUZX8zqjbVWsgwmUAz-f0Ikhz2aE_G5XfqkMA2rA; Path=/; Max-Age=3600; Expires=Tue, 21 Jan 2025 08:38:41 GMT; Secure; HttpOnly; SameSite=None"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "132"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000 ; includeSubDomains"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"orgName\": \"APOLLO_ORG1\",\n    \"userName\": \"APOLLO_ORG1@mailinator.com\",\n    \"code\": \"222\",\n    \"message\": \"please verify for 2 factor authentication\"\n}"
 						}
 					]
 				},
@@ -797,6 +903,615 @@
 					]
 				},
 				{
+					"name": "1.2 - ver OTP by Id - Mailinator Copy 5",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"{\r",
+									"    let responseBody = pm.response.text();\r",
+									"let otpMatch = responseBody.match(/OTP:\\s*(\\d+)/);\r",
+									"\r",
+									"if (otpMatch) {\r",
+									"    let otp = otpMatch[1];\r",
+									"    pm.collectionVariables.set(\"qaorg_otp\", otp);\r",
+									"    console.log(\"OTP saved:\", otp);\r",
+									"} else {\r",
+									"    console.log(\"OTP not found in response.\");\r",
+									"}\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"setTimeout(() => console.log(\"Paused for 5 seconds\"), 5000);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://mailinator.com/api/v2/domains/{{mailinator_domain}}/messages/{{otp_message_id}}",
+							"protocol": "https",
+							"host": [
+								"mailinator",
+								"com"
+							],
+							"path": [
+								"api",
+								"v2",
+								"domains",
+								"{{mailinator_domain}}",
+								"messages",
+								"{{otp_message_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verification-ORG1",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"otpCode\":\"292975\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{testurl}}:8080/api/QA_Org7/user/QA_Org7@mailinator.com/verification",
+							"host": [
+								"{{testurl}}"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"QA_Org7",
+								"user",
+								"QA_Org7@mailinator.com",
+								"verification"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "verification-ORG1",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"otpCode\":\"155540\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:8080/api/APOLLO_ORG1/user/APOLLO_ORG1@mailinator.com/verification",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"APOLLO_ORG1",
+										"user",
+										"APOLLO_ORG1@mailinator.com",
+										"verification"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "28"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000 ; includeSubDomains"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "set-cookie",
+									"value": "X-Auth=; Max-Age=0; Expires=Tue, 21 Jan 2025 07:34:02 GMT; Path=/; Secure; HTTPOnly; SameSite=None"
+								}
+							],
+							"cookie": [],
+							"body": "Email verified successfully."
+						}
+					]
+				},
+				{
+					"name": "Re-login-org-ORG1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// pm.test(\"Status code is 200\", function () {\r",
+									"//     pm.response.to.have.status(200);\r",
+									"// });\r",
+									"\r",
+									"// pm.test(\"Response has a token\", function () {\r",
+									"//     const responseData = pm.response.json();\r",
+									"//     pm.expect(responseData.token).to.be.a(\"string\");\r",
+									"// });\r",
+									"\r",
+									"//1-Set Variables and Constants\r",
+									"\r",
+									"// Get response text\r",
+									"let responseText = pm.response.text();\r",
+									"\r",
+									"if (responseText) {\r",
+									"    // If response is \"1\", handle it separately\r",
+									"    if (responseText === \"1\") {\r",
+									"        console.warn(\"Received response '1', possibly due to multiple failed login attempts.\");\r",
+									"\r",
+									"        pm.test(\"Verify multiple invalid login attempts response\", function () {\r",
+									"            pm.expect(responseText).to.equal(\"1\");\r",
+									"        });\r",
+									"\r",
+									"    } else {\r",
+									"        let responseData = pm.response.json();  // Parse JSON response\r",
+									"\r",
+									"        // Store organization name in a collection variable if present\r",
+									"        if (responseData.orgName) {\r",
+									"            pm.collectionVariables.set(\"org_name\", responseData.orgName);\r",
+									"            console.log(\"Organization name stored:\", responseData.orgName);\r",
+									"        } else {\r",
+									"            console.warn(\"Organization name not found in response.\");\r",
+									"        }\r",
+									"\r",
+									"        // Verify response status code dynamically\r",
+									"        pm.test(\"Verify response status code\", function () {\r",
+									"            pm.expect([200, 401]).to.include(pm.response.code);\r",
+									"        });\r",
+									"\r",
+									"        // If status code is 200, check for 2FA message\r",
+									"        if (pm.response.code === 200) {\r",
+									"            pm.test(\"Response contains 2FA message\", function () {\r",
+									"                pm.expect(responseData).to.have.property(\"message\", \"please verify for 2 factor authentication\");\r",
+									"            });\r",
+									"        }\r",
+									"\r",
+									"        // If status code is 401, check for unauthorized error message\r",
+									"        if (pm.response.code === 401) {\r",
+									"            pm.test(\"Response contains 'Unauthorized' error message\", function () {\r",
+									"                pm.expect(responseData).to.have.property(\"error\", \"Unauthorized\"); \r",
+									"                pm.expect(responseData).to.have.property(\"message\").that.includes(\"2-factor authentication not verified.\");\r",
+									"            });\r",
+									"        }\r",
+									"    }\r",
+									"} else {\r",
+									"    console.warn(\"Empty response body received.\");\r",
+									"    pm.test(\"Response should not be empty\", function () {\r",
+									"        pm.expect(responseText.length).to.be.greaterThan(0);\r",
+									"    });\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userName\": \"{{qaorg_username}}\",\n    \"password\": \"{{qaorg_password}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{Domain}}:{{Port}}/api/user/login",
+							"protocol": "https",
+							"host": [
+								"{{Domain}}"
+							],
+							"port": "{{Port}}",
+							"path": [
+								"api",
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "login-org-ORG1",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userName\":\"APOLLO_ORG1@mailinator.com\",\n    \"password\":\"454b5c1a-dd23-45be-b47b-6d852b3b77d5\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:8080/api/user/login",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"user",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "X-Auth=eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBUE9MTE9fT1JHMUBtYWlsaW5hdG9yLmNvbSIsImlzcyI6ImlPcmJpdCIsImV4cCI6MTczNzQ0ODQzMywiaWF0IjoxNzM3NDQ0ODMzLCJhZG1pbiI6InRydWUifQ.q-WP1xnuQRhW7_FQygJ5f9ezdp1hLiMQlmSU7TXIk7IlsMr27cHLfgQspA-r976x1RiKk6YJUcQOC39Lkn4Ksg; Path=/; Max-Age=3600; Expires=Tue, 21 Jan 2025 08:33:53 GMT; Secure; HttpOnly; SameSite=None"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "123"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000 ; includeSubDomains"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"orgName\": \"APOLLO_ORG1\",\n    \"userName\": \"APOLLO_ORG1@mailinator.com\",\n    \"code\": \"111\",\n    \"message\": \"please verify your email address\"\n}"
+						},
+						{
+							"name": "login-org-ORG1",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userName\":\"APOLLO_ORG1@mailinator.com\",\n    \"password\":\"454b5c1a-dd23-45be-b47b-6d852b3b77d5\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:8080/api/user/login",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"user",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "X-Auth=eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBUE9MTE9fT1JHMUBtYWlsaW5hdG9yLmNvbSIsImlzcyI6ImlPcmJpdCIsImV4cCI6MTczNzQ0ODcyMSwiaWF0IjoxNzM3NDQ1MTIxLCJhZG1pbiI6InRydWUifQ.-L5uHxsDC4G7l9DW_EhWAKlEemf6Qp2GR2PunmALGb_DVcvUZX8zqjbVWsgwmUAz-f0Ikhz2aE_G5XfqkMA2rA; Path=/; Max-Age=3600; Expires=Tue, 21 Jan 2025 08:38:41 GMT; Secure; HttpOnly; SameSite=None"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "132"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000 ; includeSubDomains"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"orgName\": \"APOLLO_ORG1\",\n    \"userName\": \"APOLLO_ORG1@mailinator.com\",\n    \"code\": \"222\",\n    \"message\": \"please verify for 2 factor authentication\"\n}"
+						}
+					]
+				},
+				{
+					"name": "2- 2FA OTP message id-Mailinator Copy 4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let responseData = pm.response.json();\r",
+									"let data = responseData?.msgs;  // Ensure 'msgs' exists safely\r",
+									"\r",
+									"let sr_no = pm.collectionVariables.get(\"sr_no\"); // Get environment variable\r",
+									"let to_email = pm.collectionVariables.get(\"org_email\");\r",
+									"console.log(\"Target Email:\", to_email);\r",
+									"\r",
+									"// Ensure 'data' exists and is an array\r",
+									"if (Array.isArray(data)) {\r",
+									"    // Filter and sort to get the latest 2FA OTP Email\r",
+									"    let faotpmsg = data\r",
+									"        .filter(m => m.to === to_email && m.subject === \"2-factor authentication Email\")\r",
+									"        .sort((a, b) => a.seconds_ago - b.seconds_ago)?.[0]; // Sort in ascending order (latest first)\r",
+									"\r",
+									"    // Set the OTP message ID if found\r",
+									"    if (faotpmsg) {\r",
+									"        pm.collectionVariables.set(\"2faotp_message_id\", faotpmsg.id);\r",
+									"        console.log(\"Latest OTP Message ID:\", faotpmsg.id);\r",
+									"    } else {\r",
+									"        console.log(\"No OTP message found.\");\r",
+									"    }\r",
+									"} else {\r",
+									"    console.log(\"Data is not an array or is undefined.\");\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"setTimeout(() => console.log(\"Paused for 5 seconds\"), 5000);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://mailinator.com/api/v2/domains/private/inboxes/*?token={{mailinator_token}}",
+							"protocol": "https",
+							"host": [
+								"mailinator",
+								"com"
+							],
+							"path": [
+								"api",
+								"v2",
+								"domains",
+								"private",
+								"inboxes",
+								"*"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{mailinator_token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2.1- 2FA OTP by Id - Mailinator Copy 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let responseBody = pm.response.text();\r",
+									"let otpMatch = responseBody.match(/OTP:\\s*(\\d+)/);\r",
+									"\r",
+									"if (otpMatch) {\r",
+									"    let otp = otpMatch[1];\r",
+									"    pm.collectionVariables.set(\"qaorg_2fa_otp\", otp);\r",
+									"    console.log(\"OTP saved:\", otp);\r",
+									"} else {\r",
+									"    console.log(\"OTP not found in response.\");\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"setTimeout(() => console.log(\"Paused for 5 seconds\"), 5000);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://mailinator.com/api/v2/domains/{{mailinator_domain}}/messages/{{2faotp_message_id}}",
+							"protocol": "https",
+							"host": [
+								"mailinator",
+								"com"
+							],
+							"path": [
+								"api",
+								"v2",
+								"domains",
+								"{{mailinator_domain}}",
+								"messages",
+								"{{2faotp_message_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "verify2fa-ORG1",
 					"request": {
 						"method": "POST",
@@ -917,117 +1632,6 @@
 							"body": "{\n    \"userId\": \"18b7f905-6020-4f6f-b94d-06ba03ce2cf9\",\n    \"orgId\": \"897891e5-88d4-443b-ab88-c7628674b4bc\",\n    \"hospitalId\": null,\n    \"hospitalCode\": null,\n    \"userName\": \"APOLLO_ORG1@mailinator.com\",\n    \"userRoles\": [\n        \"orgAdmin\"\n    ],\n    \"firstName\": \"APOLLO_ORG1\",\n    \"lastName\": \"APOLLO_ORG1\",\n    \"status\": \"ACTIVE\",\n    \"loginStatus\": \"2faVerified\",\n    \"description\": \"This is first administrator for organisation.\",\n    \"orgName\": \"APOLLO_ORG1\",\n    \"permissions\": [\n        \"permit.create.role\",\n        \"permit.admin.image\",\n        \"permit.admin.hospital\",\n        \"permit.create.hospital\",\n        \"permit.admin.users\",\n        \"permit.admin.roles\",\n        \"permit.create.user\",\n        \"permit.create.image\"\n    ],\n    \"roleinfo\": {\n        \"roleId\": \"9fc61447-0d8b-47ef-8877-b114bc495d5d\",\n        \"roleName\": \"orgAdmin\",\n        \"mappedLegacyId\": 3\n    }\n}"
 						}
 					]
-				},
-				{
-					"name": "logout-ORG1",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://itouchnew.iorbit.health:8080/api/APOLLO_ORG1/user/APOLLO_ORG1@mailinator.com/logout",
-							"protocol": "https",
-							"host": [
-								"itouchnew",
-								"iorbit",
-								"health"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"APOLLO_ORG1",
-								"user",
-								"APOLLO_ORG1@mailinator.com",
-								"logout"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "logout-ORG1",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "https://localhost:8080/api/APOLLO_ORG1/user/APOLLO_ORG1@mailinator.com/logout",
-									"protocol": "https",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"api",
-										"APOLLO_ORG1",
-										"user",
-										"APOLLO_ORG1@mailinator.com",
-										"logout"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "plain",
-							"header": [
-								{
-									"key": "Vary",
-									"value": "Origin"
-								},
-								{
-									"key": "Vary",
-									"value": "Access-Control-Request-Method"
-								},
-								{
-									"key": "Vary",
-									"value": "Access-Control-Request-Headers"
-								},
-								{
-									"key": "Content-Type",
-									"value": "text/plain;charset=UTF-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "28"
-								},
-								{
-									"key": "Cache-Control",
-									"value": "no-cache, no-store, max-age=0, must-revalidate"
-								},
-								{
-									"key": "Pragma",
-									"value": "no-cache"
-								},
-								{
-									"key": "Expires",
-									"value": "0"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "Strict-Transport-Security",
-									"value": "max-age=31536000 ; includeSubDomains"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "DENY"
-								},
-								{
-									"key": "X-XSS-Protection",
-									"value": "0"
-								},
-								{
-									"key": "Referrer-Policy",
-									"value": "no-referrer"
-								},
-								{
-									"key": "set-cookie",
-									"value": "X-Auth=; Max-Age=0; Expires=Tue, 21 Jan 2025 07:41:26 GMT; Path=/; Secure; HTTPOnly; SameSite=None"
-								}
-							],
-							"cookie": [],
-							"body": "User successfully logged out"
-						}
-					]
 				}
 			]
 		},
@@ -1038,18 +1642,12 @@
 					"name": "create-hosp-ORG1_H1",
 					"event": [
 						{
-							"listen": "test",
+							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"try {",
-									"    let requestBody = JSON.parse(pm.request.body.raw);",
-									"    let orgCode = requestBody.orgName || \"default_org\";",
+									"pm.globals.set (\"hospitalCode\", \"QA_Hospital14\");",
 									"",
-									"    pm.globals.set(\"orgCode\", orgCode);",
-									"    console.log(\"orgCode saved as:\", orgCode);",
-									"} catch (e) {",
-									"    console.error(\"Error parsing request body:\", e);",
-									"}",
+									"",
 									""
 								],
 								"type": "text/javascript",
@@ -1057,10 +1655,32 @@
 							}
 						},
 						{
-							"listen": "prerequest",
+							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.globals.set (\"hospitalCode\", \"QA_Hospital14\");"
+									"console.log(\"sr_no value:\", pm.environment.get(\"sr_no\"));",
+									"",
+									"let response = pm.response.json();",
+									"",
+									"if (response.hospitalName) {",
+									"    pm.collectionVariables.set(\"hospitalName_v\", response.hospitalName);",
+									"    console.log(\"Stored hospital Name:\", response.hospitalName);",
+									"} else {",
+									"    console.log(\"hospital Name not found in the response!\");",
+									"}",
+									"",
+									"if (response.contact && response.contact.email) {",
+									"    pm.collectionVariables.set(\"hospital_email\", response.contact.email);",
+									"    console.log(\"Stored hospital email:\", response.contact.email);",
+									"} else {",
+									"    console.log(\"hospital Email not found in the response!\");",
+									"}",
+									"",
+									"// Verify response status code dynamically",
+									"pm.test(\"Verify response status code\", function () {",
+									"    pm.expect([201, 401]).to.include(pm.response.code);",
+									"});",
+									""
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -1072,7 +1692,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"hospitalName\":\"QA_Hospital\",\n    \"hospitalCode\":\"QA_Hospital14\",\n    \"description\":\"APOLLO_ORG1_H1 at APOLLO_ORG1\",\n    \"myAddress\": {\n        \"street1\": \"APOLLO_ORG1_H1 street\",\n        \"city\": \"Bangalore\",\n        \"pincode\": \"560076\",\n        \"state\": \"Karnataka\",\n        \"country\": \"India\"\n    },\n    \"myContact\": {\n        \"name\": \"APOLLO_ORG1_H1\",\n        \"phone\": \"9999988888\",\n        \"email\": \"QA_Hospital14@mailinator.com\"\n    }\n}\n",
+							"raw": "{\n    \"hospitalName\":\"qa_hospital1{{sr_no}}\",\n    \"hospitalCode\":\"QA_Hospital\",\n    \"description\":\"APOLLO_ORG1_H1 at APOLLO_ORG1\",\n    \"myAddress\": {\n        \"street1\": \"APOLLO_ORG1_H1 street\",\n        \"city\": \"Bangalore\",\n        \"pincode\": \"560076\",\n        \"state\": \"Karnataka\",\n        \"country\": \"India\"\n    },\n    \"myContact\": {\n        \"name\": \"APOLLO_ORG1_H1\",\n        \"phone\": \"9999988888\",\n        \"email\": \"qa_hospital1{{sr_no}}@{{mailinator_domain}}\"\n    }\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1080,14 +1700,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{testurl}}:8080/api/{{orgName}}/hospital/create",
+							"raw": "{{testurl}}:8080/api/{{orgName}}{{sr_no}}/hospital/create",
 							"host": [
 								"{{testurl}}"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"{{orgName}}",
+								"{{orgName}}{{sr_no}}",
 								"hospital",
 								"create"
 							]
@@ -1184,6 +1804,348 @@
 							"body": "{\n    \"auditMe\": {\n        \"createdby\": \"APOLLO_ORG1@mailinator.com\",\n        \"createdtime\": 1737445210199,\n        \"updatedby\": \"APOLLO_ORG1@mailinator.com\",\n        \"updatedtime\": 1737445210199\n    },\n    \"orgId\": \"897891e5-88d4-443b-ab88-c7628674b4bc\",\n    \"orgName\": \"APOLLO_ORG1\",\n    \"myAddress\": {\n        \"street1\": \"APOLLO_ORG1_H1 street\",\n        \"street2\": null,\n        \"city\": \"Bangalore\",\n        \"pincode\": \"560076\",\n        \"state\": \"Karnataka\",\n        \"country\": \"India\"\n    },\n    \"myContact\": {\n        \"name\": \"APOLLO_ORG1_H1\",\n        \"phone\": \"9999988888\",\n        \"email\": \"APOLLO_ORG1_H1@mailinator.com\",\n        \"address\": null\n    },\n    \"hospitalId\": \"6540622f-2873-40fa-a470-b295c5dd88de\",\n    \"hospitalName\": \"APOLLO_ORG1_H1\",\n    \"hospitalCode\": \"APOLLOORG1H1\",\n    \"description\": \"APOLLO_ORG1_H1 at APOLLO_ORG1\"\n}"
 						}
 					]
+				},
+				{
+					"name": "1-Cred & ver OTP message id-Mailinator Copy 4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let responseData = pm.response.json();\r",
+									"let data = responseData?.msgs || [];\r",
+									"\r",
+									"let full_email = pm.collectionVariables.get(\"org_email\") || \"\";\r",
+									"let inbox = full_email.split(\"@\")[0];  // Extract `qa_viru12` from full email\r",
+									"console.log(\"✅ Extracted inbox:\", inbox);\r",
+									"\r",
+									"if (Array.isArray(data)) {\r",
+									"    let otpmsg = data\r",
+									"        .filter(m => m.to?.toLowerCase().trim() === inbox.toLowerCase().trim()\r",
+									"               && m.subject.toLowerCase().includes(\"verification\"))\r",
+									"        .sort((a, b) => a.seconds_ago - b.seconds_ago)[0];\r",
+									"\r",
+									"    let unpwdmsg = data.find(m =>\r",
+									"        m.to?.toLowerCase().trim() === inbox.toLowerCase().trim()\r",
+									"        && m.subject.toLowerCase().includes(\"account successfully created\"));\r",
+									"\r",
+									"    if (otpmsg) {\r",
+									"        pm.collectionVariables.set(\"otp_message_id\", otpmsg.id);\r",
+									"        console.log(\"✅ OTP Message ID set:\", otpmsg.id);\r",
+									"    } else {\r",
+									"        console.log(\"❌ No OTP message found.\");\r",
+									"    }\r",
+									"\r",
+									"    if (unpwdmsg) {\r",
+									"        pm.collectionVariables.set(\"unpwd_message_id\", unpwdmsg.id);\r",
+									"        console.log(\"✅ Account Creation Message ID set:\", unpwdmsg.id);\r",
+									"    } else {\r",
+									"        console.log(\"❌ No Account Creation message found.\");\r",
+									"    }\r",
+									"} else {\r",
+									"    console.log(\"❌ 'msgs' is not an array.\");\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"setTimeout(() => console.log(\"Paused for 5 seconds\"), 5000);",
+									"",
+									"",
+									"let email = pm.collectionVariables.get(\"org_email\"); // e.g., QA_viru7@mailinator.com",
+									"if (email) {",
+									"    let inbox = email.split(\"@\")[0];  // Extract 'QA_viru7'",
+									"    pm.variables.set(\"mailinator_inbox\", inbox);  // Used only in this request",
+									"    console.log(\"Inbox set to:\", inbox);",
+									"} else {",
+									"    console.log(\"⚠️ org_email not set\");",
+									"}",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mailinator.com/api/v2/domains/private/inboxes/*?token={{mailinator}}",
+							"protocol": "https",
+							"host": [
+								"mailinator",
+								"com"
+							],
+							"path": [
+								"api",
+								"v2",
+								"domains",
+								"private",
+								"inboxes",
+								"*"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{mailinator}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1.1- UN and PWD id-Mailinator Copy 6",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let body = pm.response.json().parts[0].body;\r",
+									"\r",
+									"let username = body.match(/Username:\\s(.+)\\r\\n/)[1];\r",
+									"let password = body.match(/Password:\\s(.+)\\r\\n/)[1];\r",
+									"pm.collectionVariables.set(\"qaorg_username\", username);\r",
+									"pm.collectionVariables.set(\"qaorg_password\", password);\r",
+									"console.log(\"Username:\", username, \"Password:\", password);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"setTimeout(() => console.log(\"Paused for 5 seconds\"), 5000);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://mailinator.com/api/v2/domains/{{mailinator_domain}}/messages/{{unpwd_message_id}}",
+							"protocol": "https",
+							"host": [
+								"mailinator",
+								"com"
+							],
+							"path": [
+								"api",
+								"v2",
+								"domains",
+								"{{mailinator_domain}}",
+								"messages",
+								"{{unpwd_message_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login- hosp-ORG1_H1",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userName\":\"QA_Hospital14@mailinator.com\",\n    \"password\":\"b3021f3b-0824-4297-a5c1-77082052e23d\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{testurl}}:8080/api/user/login",
+							"host": [
+								"{{testurl}}"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "login- hosp-ORG1_H1",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userName\":\"APOLLO_ORG1_H1@mailinator.com\",\n    \"password\":\"35d621dc-7a99-4297-bba1-67bfa60880d2\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:8080/api/user/login",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"user",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "X-Auth=eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBUE9MTE9fT1JHMV9IMUBtYWlsaW5hdG9yLmNvbSIsImlzcyI6ImlPcmJpdCIsImV4cCI6MTczNzQ0ODg5NywiaWF0IjoxNzM3NDQ1Mjk3LCJhZG1pbiI6InRydWUifQ.4PXtlA0S4RTCPI1vvjry13h7S70oRqs5GF0SUY0xdZqYHh4fZF4wwqKn1LaeFm7M4dbDVL048w7lBw9dB_yK6w; Path=/; Max-Age=3600; Expires=Tue, 21 Jan 2025 08:41:37 GMT; Secure; HttpOnly; SameSite=None"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "126"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000 ; includeSubDomains"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"orgName\": \"APOLLO_ORG1\",\n    \"userName\": \"APOLLO_ORG1_H1@mailinator.com\",\n    \"code\": \"111\",\n    \"message\": \"please verify your email address\"\n}"
+						}
+					]
+				},
+				{
+					"name": "1.2 - ver OTP by Id - Mailinator Copy 6",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"{\r",
+									"    let responseBody = pm.response.text();\r",
+									"let otpMatch = responseBody.match(/OTP:\\s*(\\d+)/);\r",
+									"\r",
+									"if (otpMatch) {\r",
+									"    let otp = otpMatch[1];\r",
+									"    pm.collectionVariables.set(\"qaorg_otp\", otp);\r",
+									"    console.log(\"OTP saved:\", otp);\r",
+									"} else {\r",
+									"    console.log(\"OTP not found in response.\");\r",
+									"}\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"setTimeout(() => console.log(\"Paused for 5 seconds\"), 5000);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://mailinator.com/api/v2/domains/{{mailinator_domain}}/messages/{{otp_message_id}}",
+							"protocol": "https",
+							"host": [
+								"mailinator",
+								"com"
+							],
+							"path": [
+								"api",
+								"v2",
+								"domains",
+								"{{mailinator_domain}}",
+								"messages",
+								"{{otp_message_id}}"
+							]
+						}
+					},
+					"response": []
 				},
 				{
 					"name": "verification-ORG1_H1",
@@ -1312,7 +2274,7 @@
 					]
 				},
 				{
-					"name": "login- hosp-ORG1_H1",
+					"name": "login- hosp-ORG1_H1 relogin",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -1435,6 +2397,149 @@
 							"body": "{\n    \"orgName\": \"APOLLO_ORG1\",\n    \"userName\": \"APOLLO_ORG1_H1@mailinator.com\",\n    \"code\": \"111\",\n    \"message\": \"please verify your email address\"\n}"
 						}
 					]
+				},
+				{
+					"name": "2- 2FA OTP message id-Mailinator Copy 5",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let responseData = pm.response.json();\r",
+									"let data = responseData?.msgs || [];\r",
+									"\r",
+									"let to_email = pm.collectionVariables.get(\"qahospital_username\");\r",
+									"let inbox = to_email?.split(\"@\")[0];\r",
+									"\r",
+									"console.log(\"Target Inbox:\", inbox);\r",
+									"\r",
+									"if (Array.isArray(data)) {\r",
+									"    let faotpmsg = data\r",
+									"        .filter(m => m.to?.trim().toLowerCase() === inbox?.trim().toLowerCase()\r",
+									"            && m.subject === \"2-factor authentication Email\")\r",
+									"        .sort((a, b) => a.seconds_ago - b.seconds_ago)?.[0];\r",
+									"\r",
+									"    if (faotpmsg) {\r",
+									"        pm.collectionVariables.set(\"2faotp_message_id\", faotpmsg.id);\r",
+									"        console.log(\"✅ OTP Message ID:\", faotpmsg.id);\r",
+									"    } else {\r",
+									"        console.log(\"❌ No OTP message found.\");\r",
+									"    }\r",
+									"} else {\r",
+									"    console.log(\"❌ Data is not an array or undefined.\");\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"setTimeout(() => console.log(\"Paused for 5 seconds\"), 5000);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://mailinator.com/api/v2/domains/private/inboxes/*?token={{mailinator_token}}",
+							"protocol": "https",
+							"host": [
+								"mailinator",
+								"com"
+							],
+							"path": [
+								"api",
+								"v2",
+								"domains",
+								"private",
+								"inboxes",
+								"*"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{mailinator_token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2.1- 2FA OTP by Id - Mailinator Copy 3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let responseBody = pm.response.text();\r",
+									"let otpMatch = responseBody.match(/OTP:\\s*(\\d+)/);\r",
+									"\r",
+									"if (otpMatch) {\r",
+									"    let otp = otpMatch[1];\r",
+									"    pm.collectionVariables.set(\"qaorg_2fa_otp_hospital\", otp);\r",
+									"    console.log(\"OTP saved:\", otp);\r",
+									"} else {\r",
+									"    console.log(\"OTP not found in response.\");\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"setTimeout(() => console.log(\"Paused for 3 seconds\"), 5000);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mailinator.com/api/v2/domains/{{mailinator_domain}}/messages/{{2faotp_message_id}}",
+							"protocol": "https",
+							"host": [
+								"mailinator",
+								"com"
+							],
+							"path": [
+								"api",
+								"v2",
+								"domains",
+								"{{mailinator_domain}}",
+								"messages",
+								"{{2faotp_message_id}}"
+							]
+						}
+					},
+					"response": []
 				},
 				{
 					"name": "verify2a-ORG1_H1",
@@ -1786,7 +2891,40 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"pm.globals.set(\"doctorCode\", \"APOLLOORG1H1D1\");",
+									"let current = parseInt(pm.environment.get(\"drsr_no\") || \"0\");",
+									"pm.environment.set(\"drsr_no\", current + 1);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json();",
+									"",
+									"// Log sr_no value",
+									"console.log(\"sr_no value:\", pm.environment.get(\"sr_no\"));",
+									"",
+									"// Safe access to email",
+									"try {",
+									"    if (",
+									"        response?.doctor?.myContact?.email",
+									"    ) {",
+									"        pm.collectionVariables.set(\"doctor_email\", response.doctor.myContact.email);",
+									"        console.log(\"✅ Stored doctor email:\", response.doctor.myContact.email);",
+									"    } else {",
+									"        console.log(\"❌ doctor Email not found in the response!\");",
+									"    }",
+									"} catch (err) {",
+									"    console.error(\"❌ Error extracting email:\", err.message);",
+									"}",
+									"",
+									"// Verify response status code dynamically",
+									"pm.test(\"Verify response status code\", function () {",
+									"    pm.expect([201, 401]).to.include(pm.response.code);",
+									"});",
 									""
 								],
 								"type": "text/javascript",
@@ -1799,7 +2937,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"doctorCode\":\"APOLLOORG1H1D23\",\n    \"firstName\":\"APOLLO_D1\",\n    \"lastName\":\"ORG1_H1\",\n    \"doctorSpeciality\":[\"General Physician\", \"Cardiologist\"],\n    \"doctorExperience\":2,\n    \"birthDate\":\"1980-01-01\",\n    \"gender\":\"Male\",\n    \"doctorType\":\"shift\",\n     \"myAddress\": {\n        \"street1\": \"APOLLO_ORG1_H1 street\",\n        \"city\": \"Bangalore\",\n        \"pincode\": \"15001\",\n        \"state\": \"KA\",\n        \"country\": \"\"\n    },\n    \"myContact\": {\n        \"name\": \"APOLLO_ORG1_H1_D1\",\n        \"phone\": \"9988776655\",\n        \"email\": \"APOLLO_ORG1_H1_D23@mailinator.com\"\n    }\n}\n\n// Username: APOLLO_ORG1_H1_D1@mailinator.com\n// Password: f6aee454-6004-4be3-a45b-0dac3607bc13\n// Keep this information safe and private. Once lost, it cannot be recreated.\n// 2025-02-17 12:09:23,983 DEBUG [boundedElastic-1] c.i.i.s.u.EmailHelper: Verification Email\n// Please verify your email address by entering below OTP code.\n// OTP: 848008\n",
+							"raw": "{\n    \"doctorCode\":\"QA_doctor{{drsr_no}}\",//mandatory\n    \"firstName\":\"APOLLO_D1\",//mandatory\n    \"lastName\":\"ORG1_H1\",//mandatory\n    \"doctorSpeciality\":[\"General Physician\", \"Cardiologist\"],//mandatory\n    \"doctorExperience\":2,\n    \"birthDate\":\"01-01-1999\",\n    \"gender\":\"Male\",\n    \"doctorType\":\"SHIFT\",\n     \"myAddress\": {\n        \"street1\": \"APOLLO_ORG1_H1 street\",//mandatory\n        \"city\": \"Bangalore\",//mandatory\n        \"pincode\": \"15001\",//mandatory\n        \"state\": \"KA\",//mandatory\n        \"country\": \"Mohan\"//mandatory\n    },\n    \"myContact\": {\n        \"name\": \"APOLLO_ORG1_H1_D1\",//mandatory\n        \"phone\": \"9090909090\",//mandatory\n        \"email\": \"qa_doctor{{drsr_no}}@{{mailinator_domain}}\"//mandatory\n    }\n}\n\n// Username: APOLLO_ORG1_H1_D1@mailinator.com\n// Password: f6aee454-6004-4be3-a45b-0dac3607bc13\n// Keep this information safe and private. Once lost, it cannot be recreated.\n// 2025-02-17 12:09:23,983 DEBUG [boundedElastic-1] c.i.i.s.u.EmailHelper: Verification Email\n// Please verify your email address by entering below OTP code.\n// OTP: 848008\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1807,14 +2945,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{testurl}}:8080/api/{{OrgName}}/doctor/{{hospitalcode}}/create",
+							"raw": "{{testurl}}:8080/api/{{orgName}}{{sr_no}}/doctor/{{hospitalcode}}/create",
 							"host": [
 								"{{testurl}}"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"{{OrgName}}",
+								"{{orgName}}{{sr_no}}",
 								"doctor",
 								"{{hospitalcode}}",
 								"create"
@@ -1915,6 +3053,199 @@
 					]
 				},
 				{
+					"name": "1-Cred & ver OTP message id-Mailinator Copy 5",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let responseData = pm.response.json();\r",
+									"let data = responseData?.msgs || [];\r",
+									"\r",
+									"let full_email = pm.collectionVariables.get(\"doctor_email\") || \"\";\r",
+									"let inbox = full_email.split(\"@\")[0];  // Extract `qa_viru12` from full email\r",
+									"console.log(\"Extracted inbox:\", inbox);\r",
+									"\r",
+									"if (Array.isArray(data)) {\r",
+									"    let otpmsg = data\r",
+									"        .filter(m => m.to?.toLowerCase().trim() === inbox.toLowerCase().trim()\r",
+									"               && m.subject.toLowerCase().includes(\"verification\"))\r",
+									"        .sort((a, b) => a.seconds_ago - b.seconds_ago)[0];\r",
+									"\r",
+									"    let unpwdmsg = data.find(m =>\r",
+									"        m.to?.toLowerCase().trim() === inbox.toLowerCase().trim()\r",
+									"        && m.subject.toLowerCase().includes(\"account successfully created\"));\r",
+									"\r",
+									"    if (otpmsg) {\r",
+									"        pm.collectionVariables.set(\"otp_message_id\", otpmsg.id);\r",
+									"        console.log(\"OTP Message ID set:\", otpmsg.id);\r",
+									"    } else {\r",
+									"        console.log(\"No OTP message found.\");\r",
+									"    }\r",
+									"\r",
+									"    if (unpwdmsg) {\r",
+									"        pm.collectionVariables.set(\"unpwd_message_id\", unpwdmsg.id);\r",
+									"        console.log(\"Account Creation Message ID set:\", unpwdmsg.id);\r",
+									"    } else {\r",
+									"        console.log(\"No Account Creation message found.\");\r",
+									"    }\r",
+									"} else {\r",
+									"    console.log(\"'msgs' is not an array.\");\r",
+									"}\r",
+									"\r",
+									"\r",
+									"// let data = pm.response.json().msgs;\r",
+									"// let to_email = \"qadocpunee31\"; // Value should be updated as required\r",
+									"\r",
+									"// // Ensure 'data' exists and is an array before proceeding\r",
+									"// if (Array.isArray(data)) {\r",
+									"//     // Filter and sort to get the latest Verification Email\r",
+									"//     let otpmsg = data\r",
+									"//         .filter(m => m.to === to_email && m.subject === \"Verification Email\")\r",
+									"//         .sort((a, b) => a.seconds_ago - b.seconds_ago)[0]; // Get the latest message\r",
+									"\r",
+									"//     // Filter to get the first \"Account Successfully Created\" email\r",
+									"//     let unpwdmsg = data\r",
+									"//         .find(m => m.to === to_email && m.subject === \"Account Successfully Created\"); // Get the first match\r",
+									"\r",
+									"//     // Ensure a valid message exists before setting the environment variable\r",
+									"//     if (otpmsg) {\r",
+									"//         pm.collectionVariables.set(\"otp_message_id\", otpmsg.id);\r",
+									"//         console.log(\"OTP Message ID:\", otpmsg.id);\r",
+									"//     } else {\r",
+									"//         console.log(\"No OTP message found.\");\r",
+									"//     }\r",
+									"\r",
+									"//     if (unpwdmsg) {\r",
+									"//         pm.collectionVariables.set(\"unpwd_message_id\", unpwdmsg.id);\r",
+									"//         console.log(\"Account Creation Message ID:\", unpwdmsg.id);\r",
+									"//     } else {\r",
+									"//         console.log(\"No Account Creation message found.\");\r",
+									"//     }\r",
+									"// } else {\r",
+									"//     console.log(\"Invalid response format: 'msgs' is not an array.\");\r",
+									"// }\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"setTimeout(() => console.log(\"Paused for 5 seconds\"), 5000);",
+									"",
+									"",
+									"let email = pm.collectionVariables.get(\"org_email\"); // e.g., QA_viru7@mailinator.com",
+									"if (email) {",
+									"    let inbox = email.split(\"@\")[0];  // Extract 'QA_viru7'",
+									"    pm.variables.set(\"mailinator_inbox\", inbox);  // Used only in this request",
+									"    console.log(\"Inbox set to:\", inbox);",
+									"} else {",
+									"    console.log(\"⚠️ org_email not set\");",
+									"}",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mailinator.com/api/v2/domains/private/inboxes/*?token={{mailinator}}",
+							"protocol": "https",
+							"host": [
+								"mailinator",
+								"com"
+							],
+							"path": [
+								"api",
+								"v2",
+								"domains",
+								"private",
+								"inboxes",
+								"*"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{mailinator}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1.1- UN and PWD id-Mailinator Copy 4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let body = pm.response.json().parts[0].body;\r",
+									"\r",
+									"let username = body.match(/Username:\\s(.+)\\r\\n/)[1];\r",
+									"let password = body.match(/Password:\\s(.+)\\r\\n/)[1];\r",
+									"pm.collectionVariables.set(\"qadr_username\", username);\r",
+									"pm.collectionVariables.set(\"qadr_password\", password);\r",
+									"console.log(\"Username:\", username, \"Password:\", password);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"setTimeout(() => console.log(\"Paused for 5 seconds\"), 5000);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://mailinator.com/api/v2/domains/{{mailinator_domain}}/messages/{{unpwd_message_id}}",
+							"protocol": "https",
+							"host": [
+								"mailinator",
+								"com"
+							],
+							"path": [
+								"api",
+								"v2",
+								"domains",
+								"{{mailinator_domain}}",
+								"messages",
+								"{{unpwd_message_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "login-doc-H1_D1",
 					"request": {
 						"auth": {
@@ -1948,6 +3279,63 @@
 					"response": []
 				},
 				{
+					"name": "1.2 - ver OTP by Id - Mailinator Copy 4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"{\r",
+									"    let responseBody = pm.response.text();\r",
+									"let otpMatch = responseBody.match(/OTP:\\s*(\\d+)/);\r",
+									"\r",
+									"if (otpMatch) {\r",
+									"    let otp = otpMatch[1];\r",
+									"    pm.collectionVariables.set(\"qadr_otp\", otp);\r",
+									"    console.log(\"OTP saved:\", otp);\r",
+									"} else {\r",
+									"    console.log(\"OTP not found in response.\");\r",
+									"}\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"setTimeout(() => console.log(\"Paused for 5 seconds\"), 5000);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://mailinator.com/api/v2/domains/{{mailinator_domain}}/messages/{{otp_message_id}}",
+							"protocol": "https",
+							"host": [
+								"mailinator",
+								"com"
+							],
+							"path": [
+								"api",
+								"v2",
+								"domains",
+								"{{mailinator_domain}}",
+								"messages",
+								"{{otp_message_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "verification-H1_D1",
 					"request": {
 						"method": "POST",
@@ -1974,6 +3362,182 @@
 								"user",
 								"APOLLO_ORG1_H1_D1@mailinator.com",
 								"verification"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login-doc-H1_D1 relogin",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userName\":\"APOLLO_ORG1_H1_D1@mailinator.com\",\n    \"password\":\"4db60d0f-b17a-4539-8421-3183597d013c\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8080/api/user/login",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2- 2FA OTP message id-Mailinator Copy 6",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let responseData = pm.response.json();\r",
+									"let data = responseData?.msgs || [];\r",
+									"\r",
+									"let to_email = pm.collectionVariables.get(\"qahospital_username\");\r",
+									"let inbox = to_email?.split(\"@\")[0];\r",
+									"\r",
+									"console.log(\"Target Inbox:\", inbox);\r",
+									"\r",
+									"if (Array.isArray(data)) {\r",
+									"    let faotpmsg = data\r",
+									"        .filter(m => m.to?.trim().toLowerCase() === inbox?.trim().toLowerCase()\r",
+									"            && m.subject === \"2-factor authentication Email\")\r",
+									"        .sort((a, b) => a.seconds_ago - b.seconds_ago)?.[0];\r",
+									"\r",
+									"    if (faotpmsg) {\r",
+									"        pm.collectionVariables.set(\"2faotp_message_id\", faotpmsg.id);\r",
+									"        console.log(\"✅ OTP Message ID:\", faotpmsg.id);\r",
+									"    } else {\r",
+									"        console.log(\"❌ No OTP message found.\");\r",
+									"    }\r",
+									"} else {\r",
+									"    console.log(\"❌ Data is not an array or undefined.\");\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"setTimeout(() => console.log(\"Paused for 5 seconds\"), 5000);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://mailinator.com/api/v2/domains/private/inboxes/*?token={{mailinator_token}}",
+							"protocol": "https",
+							"host": [
+								"mailinator",
+								"com"
+							],
+							"path": [
+								"api",
+								"v2",
+								"domains",
+								"private",
+								"inboxes",
+								"*"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{mailinator_token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2.1- 2FA OTP by Id - Mailinator Copy 4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let responseBody = pm.response.text();\r",
+									"let otpMatch = responseBody.match(/OTP:\\s*(\\d+)/);\r",
+									"\r",
+									"if (otpMatch) {\r",
+									"    let otp = otpMatch[1];\r",
+									"    pm.collectionVariables.set(\"qaorg_2fa_otp_hospital\", otp);\r",
+									"    console.log(\"OTP saved:\", otp);\r",
+									"} else {\r",
+									"    console.log(\"OTP not found in response.\");\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"setTimeout(() => console.log(\"Paused for 3 seconds\"), 5000);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://mailinator.com/api/v2/domains/{{mailinator_domain}}/messages/{{2faotp_message_id}}",
+							"protocol": "https",
+							"host": [
+								"mailinator",
+								"com"
+							],
+							"path": [
+								"api",
+								"v2",
+								"domains",
+								"{{mailinator_domain}}",
+								"messages",
+								"{{2faotp_message_id}}"
 							]
 						}
 					},
@@ -2046,7 +3610,7 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"pm.globals.set(\"patientCode\", \"APOLLOORG1H1P5\")"
+									""
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -2058,7 +3622,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "   {\n       \"patient\": {\n           \"patientCode\": \"APOLLOORG1H1P5\",\n           \"patientName\": \"APOLLO_ORG1_H1_P2\",\n           \"firstName\": \"APOLLO_P2\",\n           \"lastName\": \"ORG1_H1\",\n           \"birthDate\": \"2000-01-01\",\n           \"myAddress\": {\n               \"street1\": \"APOLLO_ORG1_H1_P2 street\",\n               \"city\": \"Bangalore\",\n               \"pincode\": \"560076\",\n               \"state\": \"KA\",\n               \"country\": \"IN\"\n           },\n           \"myContact\": {\n               \"name\": \"APOLLO_ORG1_H1_P2\",\n               \"phone\": \"9902530998\",\n               \"email\": \"APOLLO_ORG1_H1_P5@mailinator.com\"\n           }\n       },\n       \"patientinfo\": [\n           {\n               \"infoType\": \"general details\",\n               \"infoData\": {\n                   \"age\": 19,\n                   \"height\": \"155\",\n                   \"weight\": \"65\",\n                   \"gender\": \"Male\",\n                   \"bloodgroup\": \"A+\",\n                   \"anyAllergies\": \"\",\n                   \"pastcomplications\": \"\"\n               }\n           }\n       ]\n   }\n",
+							"raw": "   {\n       \"patient\": {\n           \"patientCode\": \"qa_patient{{drsr_no}}\",\n           \"patientName\": \"APOLLO_ORG1_H1_P223\",\n           \"firstName\": \"APOLLO_P232\",\n           \"lastName\": \"ORG1_H132\",\n           \"birthDate\": \"2000-01-01\",\n           \"myAddress\": {\n               \"street1\": \"APOLLO_ORG1_H1_P2 street\",\n               \"city\": \"Bangalore\",\n               \"pincode\": \"560076\",\n               \"state\": \"KA\",\n               \"country\": \"IN\"\n           },\n           \"myContact\": {\n               \"name\": \"APOLLO_ORG1_H1_P2\",\n               \"phone\": \"9902530998\",\n               \"email\": \"qa_patient{{sr_no}}@{{mailinator_domain}}\"\n           }\n       },\n       \"patientinfo\": [\n           {\n               \"infoType\": \"general details\",\n               \"infoData\": {\n                   \"age\": 19,\n                   \"height\": \"155\",\n                   \"weight\": \"65\",\n                   \"gender\": \"Male\",\n                   \"bloodgroup\": \"A+\",\n                   \"anyAllergies\": \"\",\n                   \"pastcomplications\": \"\"\n               }\n           }\n       ]\n   }\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2066,16 +3630,16 @@
 							}
 						},
 						"url": {
-							"raw": "{{testurl}}:8080/api/{{OrgName}}/patient/{{hospitalCode}}/create",
+							"raw": "{{testurl}}:8080/api/{{orgName}}{{sr_no}}/patient/{{hospitalCode}}{{sr_no}}/create",
 							"host": [
 								"{{testurl}}"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"{{OrgName}}",
+								"{{orgName}}{{sr_no}}",
 								"patient",
-								"{{hospitalCode}}",
+								"{{hospitalCode}}{{sr_no}}",
 								"create"
 							]
 						}
@@ -2731,6 +4295,117 @@
 			]
 		},
 		{
+			"name": "logout-ORG1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://itouchnew.iorbit.health:8080/api/APOLLO_ORG1/user/APOLLO_ORG1@mailinator.com/logout",
+					"protocol": "https",
+					"host": [
+						"itouchnew",
+						"iorbit",
+						"health"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"APOLLO_ORG1",
+						"user",
+						"APOLLO_ORG1@mailinator.com",
+						"logout"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "logout-ORG1",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8080/api/APOLLO_ORG1/user/APOLLO_ORG1@mailinator.com/logout",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"APOLLO_ORG1",
+								"user",
+								"APOLLO_ORG1@mailinator.com",
+								"logout"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "28"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000 ; includeSubDomains"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "set-cookie",
+							"value": "X-Auth=; Max-Age=0; Expires=Tue, 21 Jan 2025 07:41:26 GMT; Path=/; Secure; HTTPOnly; SameSite=None"
+						}
+					],
+					"cookie": [],
+					"body": "User successfully logged out"
+				}
+			]
+		},
+		{
 			"name": "create-gateway",
 			"event": [
 				{
@@ -2750,7 +4425,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"gatewayType\":\"Xioami Gateway\",\n    \"gatewayCode\":\"APOLLOORG1H1G4\"\n}",
+					"raw": "{\n    \"gatewayType\":\"Xioami Gateway\",\n    \"gatewayCode\":\"APOLLOORG1H1G1\",\n     \"os\":\"android\",\n     \"communicationconfig\":\"WIFI\"\n\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -2758,14 +4433,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{testurl}}:8080/api/{{orgName}}/gateway/{{hospitalCode}}/create",
+					"raw": "{{testurl}}:8080/api/{{orgName}}{{sr_no}}/gateway/{{hospitalCode}}/create",
 					"host": [
 						"{{testurl}}"
 					],
 					"port": "8080",
 					"path": [
 						"api",
-						"{{orgName}}",
+						"{{orgName}}{{sr_no}}",
 						"gateway",
 						"{{hospitalCode}}",
 						"create"
@@ -3060,7 +4735,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"wardName\": \"003\",\n    \"bedCode\": \"APOLLOORG1H1B3\",\n    \"gatewayCode\": \"{{gatewayCode}}\",\n    \"patientCode\": \"{{patientCode}}\",\n     \"devices\": [\n        {\n            \"deviceCode\": \"{{deviceCode}}\"\n        }\n    ]\n}",
+					"raw": "{\n    \"wardName\": \"003\",\n    \"bedCode\": \"{{bedCode}}\",\n    \"gatewayCode\": \"{{gatewayCode}}\",\n    \"patientCode\": \"{{qa_patient123}}\",\n     \"devices\": [\n        {\n            \"deviceCode\": \"{{deviceCode}}\"\n        }\n    ]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -3068,14 +4743,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{testurl}}:8080/api/{{orgName}}/bed/{{hospitalCode}}/create",
+					"raw": "{{testurl}}:8080/api/{{orgName}}{{sr_no}}/bed/{{hospitalCode}}/create",
 					"host": [
 						"{{testurl}}"
 					],
 					"port": "8080",
 					"path": [
 						"api",
-						"{{orgName}}",
+						"{{orgName}}{{sr_no}}",
 						"bed",
 						"{{hospitalCode}}",
 						"create"
@@ -6930,6 +8605,87 @@
 			"key": "sr_no",
 			"value": "",
 			"type": "string"
+		},
+		{
+			"key": "orgName",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "mailinator_inbox",
+			"value": ""
+		},
+		{
+			"key": "otp_message_id",
+			"value": ""
+		},
+		{
+			"key": "unpwd_message_id",
+			"value": ""
+		},
+		{
+			"key": "qaorg_username",
+			"value": ""
+		},
+		{
+			"key": "qaorg_password",
+			"value": ""
+		},
+		{
+			"key": "qaorg_otp",
+			"value": ""
+		},
+		{
+			"key": "2faotp_message_id",
+			"value": ""
+		},
+		{
+			"key": "qaorg_2fa_otp",
+			"value": ""
+		},
+		{
+			"key": "hospitalName_v",
+			"value": ""
+		},
+		{
+			"key": "hospital_email",
+			"value": ""
+		},
+		{
+			"key": "qahospital_username",
+			"value": ""
+		},
+		{
+			"key": "qahospital_password",
+			"value": ""
+		},
+		{
+			"key": "qahospital_otp",
+			"value": ""
+		},
+		{
+			"key": "qaorg_2fa_otp_hospital",
+			"value": ""
+		},
+		{
+			"key": "qadr_username",
+			"value": ""
+		},
+		{
+			"key": "qadr_password",
+			"value": ""
+		},
+		{
+			"key": "doctor_email",
+			"value": ""
+		},
+		{
+			"key": "qadr_otp",
+			"value": ""
+		},
+		{
+			"key": "qaorg_2fa_otp_doctor",
+			"value": ""
 		}
 	]
 }

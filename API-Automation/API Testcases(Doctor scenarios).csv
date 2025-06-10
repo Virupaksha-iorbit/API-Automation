@@ -1,0 +1,77 @@
+API name,status,testCaseNo,description,doctorCode,firstName,lastName,doctorSpeciality,doctorExperience,birthDate,gender,doctorType,street1,city,pincode,state,country,contactName,phone,email,expectedStatusCode,Expected Message,Expected Response Time
+Create Doctor,fail,DCTC001,Empty doctorCode,,APOLLO_D01,ORG1_H01,"[""General""]",5,1/1/1990,Male,SHIFT,Street1,Bangalore,560001,KA,India,Contact1,9090909001,qa_doctor14@iorbitteam825558.testinator.com,400,doctorCode is required,? 500ms
+Create Doctor,fail,DCTC002,Empty firstName,QA_viru02,,ORG1_H02,"[""Cardiologist""]",5,1/1/1990,Male,SHIFT,Street2,Bangalore,560002,KA,India,Contact2,9090909002,qa_doctor14@iorbitteam825558.testinator.com,400,firstName is required,? 500ms
+Create Doctor,fail,DCTC003,Empty lastName,QA_viru03,APOLLO_D03,,"[""Cardiologist""]",5,1/1/1990,Male,SHIFT,Street3,Bangalore,560003,KA,India,Contact3,9090909003,qa_doctor14@iorbitteam825558.testinator.com,400,lastName is required,? 500ms
+Create Doctor,fail,DCTC004,doctorSpeciality as string,QA_viru04,APOLLO_D04,ORG1_H04,Cardiologist,5,1/1/1990,Male,SHIFT,Street4,Bangalore,560004,KA,India,Contact4,9090909004,qa_doctor14@iorbitteam825558.testinator.com,412,doctorSpeciality must be an array,? 500ms
+Create Doctor,fail,DCTC005,Empty doctorSpeciality,QA_viru05,APOLLO_D05,ORG1_H05,[],5,1/1/1990,Male,SHIFT,Street5,Bangalore,560005,KA,India,Contact5,9090909005,qa_doctor14@iorbitteam825558.testinator.com,400,doctorSpeciality is required,? 500ms
+Create Doctor,fail,DCTC006,doctorExperience as string,QA_viru06,APOLLO_D06,ORG1_H06,"[""Dermatologist""]",five,1/1/1990,Male,SHIFT,Street6,Bangalore,560006,KA,India,Contact6,9090909006,qa_doctor14@iorbitteam825558.testinator.com,412,Invalid doctorExperience datatype,? 500ms
+Create Doctor,fail,DCTC007,Missing birthDate,QA_viru07,APOLLO_D07,ORG1_H07,"[""General""]",3,,Male,SHIFT,Street7,Bangalore,560007,KA,India,Contact7,9090909007,qa_doctor14@iorbitteam825558.testinator.com,400,birthDate is required,? 500ms
+Create Doctor,fail,DCTC008,Invalid birthDate format,QA_viru08,APOLLO_D08,ORG1_H08,"[""General""]",3,invalidDate,Male,SHIFT,Street8,Bangalore,560008,KA,India,Contact8,9090909008,qa_doctor14@iorbitteam825558.testinator.com,412,Invalid birthDate format,? 500ms
+Create Doctor,fail,DCTC009,Empty gender,QA_viru09,APOLLO_D09,ORG1_H09,"[""General""]",3,1/1/1990,,SHIFT,Street9,Bangalore,560009,KA,India,Contact9,9090909009,qa_doctor14@iorbitteam825558.testinator.com,400,gender is required,? 500ms
+Create Doctor,fail,DCTC010,Invalid gender value,QA_viru10,APOLLO_D10,ORG1_H10,"[""General""]",3,1/1/1990,Unknown,SHIFT,Street10,Bangalore,560010,KA,India,Contact10,9090909010,qa_doctor14@iorbitteam825558.testinator.com,412,Invalid gender,? 500ms
+Create Doctor,fail,DCTC011,Empty doctorType,QA_viru11,APOLLO_D11,ORG1_H11,"[""General""]",3,1/1/1990,Male,,Street11,Bangalore,560011,KA,India,Contact11,9090909011,qa_doctor14@iorbitteam825558.testinator.com,400,doctorType is required,? 500ms
+Create Doctor,fail,DCTC012,Invalid doctorType,QA_viru12,APOLLO_D12,ORG1_H12,"[""General""]",3,1/1/1990,Male,EMERGENCY,Street12,Bangalore,560012,KA,India,Contact12,9090909012,qa_doctor14@iorbitteam825558.testinator.com,412,Invalid doctorType value,? 500ms
+Create Doctor,fail,DCTC013,Empty street1,QA_viru13,APOLLO_D13,ORG1_H13,"[""General""]",3,1/1/1990,Male,SHIFT,,Bangalore,560013,KA,India,Contact13,9090909013,qa_doctor14@iorbitteam825558.testinator.com,400,street1 is required,? 500ms
+Create Doctor,fail,DCTC014,Empty city,QA_viru14,APOLLO_D14,ORG1_H14,"[""General""]",3,1/1/1990,Male,SHIFT,Street14,,560014,KA,India,Contact14,9090909014,qa_doctor14@iorbitteam825558.testinator.com,400,city is required,? 500ms
+Create Doctor,fail,DCTC015,Empty pincode,QA_viru15,APOLLO_D15,ORG1_H15,"[""General""]",3,1/1/1990,Male,SHIFT,Street15,Bangalore,,KA,India,Contact15,9090909015,qa_doctor14@iorbitteam825558.testinator.com,400,pincode is required,? 500ms
+Create Doctor,fail,DCTC016,Non-numeric pincode,QA_viru16,APOLLO_D16,ORG1_H16,"[""General""]",3,1/1/1990,Male,SHIFT,Street16,Bangalore,abcd,KA,India,Contact16,9090909016,qa_doctor14@iorbitteam825558.testinator.com,412,Invalid pincode,? 500ms
+Create Doctor,fail,DCTC017,Empty state,QA_viru17,APOLLO_D17,ORG1_H17,"[""General""]",3,1/1/1990,Male,SHIFT,Street17,Bangalore,560017,,India,Contact17,9090909017,qa_doctor14@iorbitteam825558.testinator.com,400,state is required,? 500ms
+Create Doctor,fail,DCTC018,Empty country,QA_viru18,APOLLO_D18,ORG1_H18,"[""General""]",3,1/1/1990,Male,SHIFT,Street18,Bangalore,560018,KA,,Contact18,9090909018,qa_doctor14@iorbitteam825558.testinator.com,400,country is required,? 500ms
+Create Doctor,fail,DCTC019,Country > 50 chars,QA_viru19,APOLLO_D19,ORG1_H19,"[""General""]",3,1/1/1990,Male,SHIFT,Street19,Bangalore,560019,KA,abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXY,Contact19,9090909019,qa_doctor14@iorbitteam825558.testinator.com,412,Country too long,? 500ms
+Create Doctor,fail,DCTC020,Empty contactName,QA_viru20,APOLLO_D20,ORG1_H20,"[""General""]",3,1/1/1990,Male,SHIFT,Street20,Bangalore,560020,KA,India,,9090909020,qa_doctor14@iorbitteam825558.testinator.com,400,contact name is required,? 500ms
+Create Doctor,fail,DCTC021,Missing myAddress object,QA_viru21,APOLLO_D21,ORG1_H21,"[""Neurologist""]",7,1/1/1990,Male,SHIFT,,,,,,ORG1_H21_D1,9090909021,qa_doctor14@iorbitteam825558.testinator.com,400,Address details required,? 500ms
+Create Doctor,fail,DCTC022,Missing myContact object,QA_viru22,APOLLO_D22,ORG1_H22,"[""Dentist""]",3,1/1/1990,Male,SHIFT,Street22,Chennai,600001,TN,India,,,,400,Contact details required,? 500ms
+Create Doctor,pass,DCTC023,Validate audit fields (createdBy) are set,QA_viru23,APOLLO_D23,ORG1_H23,"[""General Physician""]",5,1/1/1990,Male,SHIFT,Street23,Bangalore,560021,KA,India,ORG1_H23_D1,9090909023,qa_doctor14@iorbitteam825558.testinator.com,201,Doctor created with audit info,? 500ms
+Create Doctor,fail,DCTC024,Invalid email format,QA_viru24,APOLLO_D24,ORG1_H24,"[""General""]",4,1/1/1990,Male,SHIFT,Street24,Bangalore,560022,KA,India,Contact24,9090909024,qa_doctor14@iorbitteam825558.testinator.com,412,Invalid email format,? 500ms
+Create Doctor,fail,DCTC025,Invalid phone number format,QA_viru25,APOLLO_D25,ORG1_H25,"[""General""]",4,1/1/1990,Male,SHIFT,Street25,Bangalore,560023,KA,India,Contact25,123abc4567,qa_doctor14@iorbitteam825558.testinator.com,412,Invalid phone number,? 500ms
+Create Doctor,fail,DCTC026,Negative doctorExperience,QA_viru26,APOLLO_D26,ORG1_H26,"[""General""]",-2,1/1/1990,Male,SHIFT,Street26,Bangalore,560024,KA,India,Contact26,9090909026,qa_doctor14@iorbitteam825558.testinator.com,412,doctorExperience must be positive,? 500ms
+Create Doctor,fail,DCTC027,Future birthDate,QA_viru27,APOLLO_D27,ORG1_H27,"[""General""]",3,1/1/2035,Male,SHIFT,Street27,Bangalore,560025,KA,India,Contact27,9090909027,qa_doctor14@iorbitteam825558.testinator.com,412,Invalid birthDate (cannot be in future),? 500ms
+Create Doctor,fail,DCTC028,Extra field in payload,QA_viru28,APOLLO_D28,ORG1_H28,"[""General""]",3,1/1/1990,Male,SHIFT,Street28,Bangalore,560026,KA,India,Contact28,9090909028,qa_doctor14@iorbitteam825558.testinator.com,400,Unexpected field found,? 500ms
+Create Doctor,fail,DCTC029,Duplicate doctorCode,QA_viru29,APOLLO_D01,ORG1_H29,"[""General""]",3,1/1/1990,Male,SHIFT,Street29,Bangalore,560027,KA,India,Contact29,9090909029,qa_doctor14@iorbitteam825558.testinator.com,409,doctorCode already exists,? 500ms
+Create Doctor,pass,DCTC030,Valid doctor creation,QA_viru30,APOLLO_D30,ORG1_H30,"[""General""]",5,1/1/1990,Male,SHIFT,Street30,Bangalore,560028,KA,India,Contact30,9090909030,qa_doctor14@iorbitteam825558.testinator.com,409, doctorCode already exists,? 500ms
+Create Doctor,fail,DCTC031,Duplicate Doctor Speciality,QA_viru31,APOLLO_D31,ORG1_H31,"[""General""]",5,1/2/1990,Male,SHIFT,Street31,Bangalore,560029,KA,India,Contact31,9090909031,qa_doctor14@iorbitteam825558.testinator.com,201, Doctor created successfully,? 500ms
+Create Doctor,fail,DCTC032,Doctor Experience with only spaces,QA_viru32,APOLLO_D32,ORG1_H32,"[""General""]",5,1/3/1990,Male,SHIFT,Street32,Bangalore,560030,KA,India,Contact32,9090909032,qa_doctor14@iorbitteam825558.testinator.com,400,Duplicate values in doctorSpeciality not allowed,? 500ms
+Create Doctor,fail,DCTC033,Doctor Experience with zero,QA_viru33,APOLLO_D33,ORG1_H33,"[""General""]",5,1/4/1990,Male,SHIFT,Street33,Bangalore,560031,KA,India,Contact33,9090909033,qa_doctor14@iorbitteam825558.testinator.com,412,Invalid doctorExperience format,? 500ms
+Create Doctor,fail,DCTC034,Doctor Experience with Negative values,QA_viru34,APOLLO_D34,ORG1_H34,"[""General""]",5,1/5/1990,Male,SHIFT,Street34,Bangalore,560032,KA,India,Contact34,9090909034,qa_doctor14@iorbitteam825558.testinator.com,400,doctorExperience must be greater than 0,? 500ms
+Create Doctor,fail,DCTC035,Doctor Experience with Decimal values,QA_viru35,APOLLO_D35,ORG1_H35,"[""General""]",5,1/6/1990,Male,SHIFT,Street35,Bangalore,560033,KA,India,Contact35,9090909035,qa_doctor14@iorbitteam825558.testinator.com,400,doctorExperience must be positive,? 500ms
+Create Doctor,fail,DCTC036,DoctorType with smaller characters,QA_viru36,APOLLO_D36,ORG1_H36,"[""General""]",5,1/7/1990,Male,SHIFT,Street36,Bangalore,560034,KA,India,Contact36,9090909036,qa_doctor14@iorbitteam825558.testinator.com,412,doctorExperience must be an integer,? 500ms
+Create Doctor,fail,DCTC037,Alphabetic for the DOB,QA_viru37,APOLLO_D37,ORG1_H37,"[""General""]",5,1/8/1990,Male,SHIFT,Street37,Bangalore,560035,KA,India,Contact37,9090909037,qa_doctor14@iorbitteam825558.testinator.com,412,doctorType must be either SHIFT or OPD,? 500ms
+Create Doctor,fail,DCTC038,DoctorType with smaller characters,QA_viru38,APOLLO_D38,ORG1_H38,"[""General""]",5,1/9/1990,Male,SHIFT,Street38,Bangalore,560036,KA,India,Contact38,9090909038,qa_doctor14@iorbitteam825558.testinator.com,412,doctorType must be either SHIFT or OPD,? 500ms
+Create Doctor,fail,DCTC039,Alphabetic for the DOB,QA_viru39,APOLLO_D38,ORG1_H38,"[""General""]",5,1/10/1990,Male,SHIFT,Street39,Bangalore,560037,KA,India,Contact39,9090909039,qa_doctor14@iorbitteam825558.testinator.com,412,Invalid birthDate format,? 500ms
+,,,,,,,,,,,,,,,,,,,,,,
+API name,status,testCaseNo,description,userName,password,expectedStatusCode,Expected Message,Expected Response Time,,,,,,,,,,,,,,
+Doctor Login,pass,DLTC001,Valid login credentials,doctor1@test.com,correctPassword123,200,Login successful,? 500ms,,,,,,,,,,,,,,
+Doctor Login,fail,DLTC002,Empty userName,,correctPassword123,400,userName is required,? 500ms,,,,,,,,,,,,,,
+Doctor Login,fail,DLTC003,Empty password,doctor1@test.com,,400,password is required,? 500ms,,,,,,,,,,,,,,
+Doctor Login,fail,DLTC004,Invalid userName format,doctor1mailinator.com,Password123!,412,Invalid userName format,? 500ms,,,,,,,,,,,,,,
+Doctor Login,fail,DLTC005,Invalid password format,doctor1@test.com,short,412,Password must be at least 8 characters,? 500ms,,,,,,,,,,,,,,
+Doctor Login,fail,DLTC006,Non-existing userName,unknown@test.com,Password123!,401,Invalid credentials,? 500ms,,,,,,,,,,,,,,
+Doctor Login,fail,DLTC007,Wrong password for existing user,doctor1@test.com,WrongPass123,401,Invalid credentials,? 500ms,,,,,,,,,,,,,,
+Doctor Login,fail,DLTC008,Password with only spaces,doctor1@test.com,""" """,412,Invalid password,? 500ms,,,,,,,,,,,,,,
+Doctor Login,fail,DLTC009,SQL injection in userName,"""' OR '1'='1""",somepassword123,403,Malicious input detected,? 500ms,,,,,,,,,,,,,,
+Doctor Login,fail,DLTC010,XSS script in userName,<script>alert(1)</script>,securePass123,403,Malicious input detected,? 500ms,,,,,,,,,,,,,,
+Doctor Login,fail,DLTC011,Special characters only in inputs,"""@@!!##""","""@@!!##""",412,Invalid userName or password format,? 500ms,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+API name,status,testCaseNo,description,otpCode,expectedStatusCode,Expected Message,Expected Response Time,,,,,,,,,,,,,,,
+Verify OTP,pass,VOTC001,Valid OTP,123456,200,OTP verified successfully,? 500ms,,,,,,,,,,,,,,,
+Verify OTP,fail,VOTC002,Empty OTP code,,400,otpCode is required,? 500ms,,,,,,,,,,,,,,,
+Verify OTP,fail,VOTC003,Incorrect OTP code,654321,401,Invalid OTP,? 500ms,,,,,,,,,,,,,,,
+Verify OTP,fail,VOTC004,Expired OTP,111111,410,OTP expired,? 500ms,,,,,,,,,,,,,,,
+Verify OTP,fail,VOTC005,OTP with special characters,@#%$^&,412,Invalid OTP format,? 500ms,,,,,,,,,,,,,,,
+Verify OTP,fail,VOTC006,OTP with alphabetic characters,ABCDEF,412,Invalid OTP format,? 500ms,,,,,,,,,,,,,,,
+Verify OTP,fail,VOTC007,OTP with alphanumeric mix,A1B2C3,412,Invalid OTP format,? 500ms,,,,,,,,,,,,,,,
+Verify OTP,fail,VOTC008,OTP with more than 6 digits,1234567,412,OTP must be 6 digits,? 500ms,,,,,,,,,,,,,,,
+Verify OTP,fail,VOTC009,OTP with less than 6 digits,1234,412,OTP must be 6 digits,? 500ms,,,,,,,,,,,,,,,
+Verify OTP,fail,VOTC010,OTP with only spaces,""" """,412,otpCode is required,? 500ms,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+API name,status,testCaseNo,description,otpCode,expectedStatusCode,Expected Message,Expected Response Time,,,,,,,,,,,,,,,
+2FA Verify Doctor OTP,pass,D2FA001,Valid OTP,123456,200,OTP verified successfully,? 500ms,,,,,,,,,,,,,,,
+2FA Verify Doctor OTP,fail,D2FA002,Empty OTP,,400,otpCode is required,? 500ms,,,,,,,,,,,,,,,
+2FA Verify Doctor OTP,fail,D2FA003,Expired OTP,654321,410,OTP expired,? 500ms,,,,,,,,,,,,,,,
+2FA Verify Doctor OTP,fail,D2FA004,Invalid OTP format (special chars),@#%$^&,412,Invalid OTP format,? 500ms,,,,,,,,,,,,,,,
+2FA Verify Doctor OTP,fail,D2FA005,OTP with alphabetic characters,ABCDEF,412,Invalid OTP format,? 500ms,,,,,,,,,,,,,,,
+2FA Verify Doctor OTP,fail,D2FA006,OTP with alphanumeric characters,A1B2C3,412,Invalid OTP format,? 500ms,,,,,,,,,,,,,,,
+2FA Verify Doctor OTP,fail,D2FA007,OTP less than 6 digits,1234,412,OTP must be 6 digits,? 500ms,,,,,,,,,,,,,,,
+2FA Verify Doctor OTP,fail,D2FA008,OTP more than 6 digits,1234567,412,OTP must be 6 digits,? 500ms,,,,,,,,,,,,,,,
+2FA Verify Doctor OTP,fail,D2FA009,OTP with only spaces,""" """,412,otpCode is required,? 500ms,,,,,,,,,,,,,,,
+2FA Verify Doctor OTP,fail,D2FA010,Reusing already verified OTP,123456,409,OTP already used or invalid,? 500ms,,,,,,,,,,,,,,,
